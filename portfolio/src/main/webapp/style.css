@@ -1,9 +1,3 @@
-#content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
-}
-
 .main
 {
     align-items: center;
@@ -11,13 +5,17 @@
 
 .navbar
 {
-    background: grey;
     box-sizing: border-box;
     padding-top: 1px;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 5%;
+    margin-right: 5%;
     justify-content: space-between;
     align-items: center;
+}
+
+.navbar:hover
+{
+    background: black;
 }
 
 .navbar
@@ -27,12 +25,24 @@
 
 .container
 {
+    padding: 5%;
     display: block;
     align-items: center;
     justify-content: center;
     margin-left: 20%;
     margin-right: 20%;
     text-align: center;
+}
+
+.container1
+{
+    color: white;
+    background: black;
+}
+
+.container2
+{
+    background: white;
 }
 
 .img
