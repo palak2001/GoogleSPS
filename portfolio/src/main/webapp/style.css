@@ -4,6 +4,33 @@
   width: 650px;
 }
 
-#greeting-container {
-  margin-top: 20px;
+.main
+{
+    align-items: center;
+}
+
+.navbar
+{
+    background: grey;
+    box-sizing: border-box;
+    padding-top: 1px;
+    margin-left: 15%;
+    margin-right: 15%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar
+{
+    display: flex;
+}
+
+.container
+{
+    background: grey;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20%;
+    margin-right: 20%;
 }
