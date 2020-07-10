@@ -6,19 +6,34 @@
 
 .navbar
 {
+    border-bottom-left-radius:10px;
+    border-bottom-right-radius: 10px; 
+    margin-left: 5%;
+    margin-right: 5%;
     color: white;
     background: #193341;
     box-sizing: border-box;
     padding-top: 1px;
-    margin-left: 5%;
-    margin-right: 5%;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
 }
 
 .nav_elements
 {
+    align-self: center;
+    color: white;
+}
+
+a
+{
     text-decoration: none;
+    color: inherit;
+}
+
+.nav_elements:hover
+{
+    color: white;
+    text-emphasis-color: white;
 }
 
 .line
@@ -59,7 +74,7 @@
 
 .container
 {
-    padding: 5%;
+    padding: 5% 5% 5% 5%;
     display: block;
     align-items: center;
     justify-content: center;
@@ -92,8 +107,8 @@
 .fa {
     display: flex;
   font-size: 70%;
-  padding: 5%;
-  width:5%;
+  padding: 2% 2% 2% 2%;
+  width:3%;
   height:5%;
   text-align: center;
   text-decoration: none;
