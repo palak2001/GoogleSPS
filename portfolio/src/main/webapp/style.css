@@ -1,3 +1,7 @@
+.page
+{
+    cursor: url(cursor.jpeg), auto;;	
+}
 .main
 {
     font-family: 'Montserrat', sans-serif;
@@ -6,8 +10,8 @@
 header
 {
     background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
     background-image: url("bg_image.jpg");
 }
 .navbar
@@ -19,7 +23,6 @@ header
     color: white;
     background: #193341;
     box-sizing: border-box;
-    padding-top: 1px;
     align-items: center;
     justify-content: center;
 }
@@ -35,8 +38,11 @@ a
 }
 .nav_elements:hover
 {
-    color: white;
-    text-emphasis-color: white;
+    color:rgb(204, 1, 1);
+}
+.navbar:hover
+{
+    opacity: 0.9;
 }
 hr
 {
@@ -66,10 +72,6 @@ hr
 .dot-red
 {
     background-color: rgb(204, 1, 1, 0.8);
-}
-.navbar:hover
-{
-    opacity: 0.7;
 }
 .navbar
 {
@@ -164,7 +166,7 @@ hr
 }
 .fa:hover 
 {
-    opacity: 0.7;
+    opacity: 0.8;
 }
 .fa-facebook 
 {
@@ -190,14 +192,6 @@ hr
 {
     background: black;
     color: white;
-}
-.fa-instagram
-{ 
-    background: #f09433; 
-    background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
-    background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
-    background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
 }
 .heart
 {
