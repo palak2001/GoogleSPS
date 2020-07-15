@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
-  <body class="main">
+  <body class="main" onload="displayComments()">
     <header id="about"> 
         <nav class="navbar">
             <ul class="nav_elements"><a href="#about"><b>ABOUT</b></ul>
@@ -16,8 +16,8 @@
         </nav> 
         <form action="/data" method="POST">
             <textarea name="add-comment"></textarea>
-            <button onclick="commentsHandler()">Comment</button>
-            <ul id="all-comments"></ul>
+            <button onclick="displayComments()">Comment</button>
+            <div id="all-comments"></div>
         </form>
         <div class="cards"><span class="quote">W e&nbsp&nbsp&nbsp&nbspn e e d&nbsp&nbsp&nbsp&nbspm o r e&nbsp&nbsp&nbsp&nbspd o e r s ,&nbsp&nbsp&nbsp&nbspl e s s&nbsp&nbsp&nbsp&nbspt a l k e r s</span>
         </div> 
