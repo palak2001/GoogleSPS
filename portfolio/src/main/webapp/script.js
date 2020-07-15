@@ -1,13 +1,22 @@
-function displayData()
+function displayComments()
 {
-    console.log("data fetched");
-    fetch('/data').then(response => response.text()).then(data =>{
-        document.getElementById('data-container').innerText = data;
-    console.log("data fetched successfully");
+    console.log("displayComments() is called");
+    fetch('/data').then(response => response.json()).then(comments =>{
+        const commentsListElements = document.getElementById('comments-container');
+        commentsListElements.innerHTML = '';
+        for(var key in comments)
+        {
+            commentsListElements.appendChild(createListElement(comments[key]));
+        }
+        console.log("comments fetched successfully");
     });
 }
 
-
+function createListElement(text) {
+    const liElement = document.createElement('li');
+    liElement.innerText = text;
+    return liElement;
+}
 
 
 
