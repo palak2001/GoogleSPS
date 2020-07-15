@@ -31,9 +31,6 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        comments.add("My first comment");
-        comments.add("My second comment");
-        comments.add("My third comment");
         String jsonComments = convertStringToJson(comments);        
         try 
         {
@@ -46,6 +43,30 @@ public class DataServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException
+  {
+        String text= getParameter(request,"add-comment","");
+        comments.add(text);
+        try{
+            System.out.println(comments);
+            response.sendRedirect("/index.html");
+        }
+        catch (IOException e)
+        {
+            System.err.println("Failed: ");
+            e.printStackTrace();
+        }
+  }
+
+  public String getParameter(HttpServletRequest request, String text, String defaultValue)
+  {
+        String value= request.getParameter(text);
+        if(value=="")
+        {
+            return defaultValue;
+        }
+        return value;
+  }
 
   private String convertStringToJson(ArrayList<String> comments)
   {

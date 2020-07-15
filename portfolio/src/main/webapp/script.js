@@ -2,7 +2,7 @@ function displayComments()
 {
     console.log("displayComments() is called");
     fetch('/data').then(response => response.json()).then(comments =>{
-        const commentsListElements = document.getElementById('comments-container');
+        const commentsListElements = document.getElementById('all-comments');
         commentsListElements.innerHTML = '';
         for(var key in comments)
         {
