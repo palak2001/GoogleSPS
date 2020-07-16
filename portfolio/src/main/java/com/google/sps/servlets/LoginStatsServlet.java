@@ -24,22 +24,15 @@ public class LoginStatsServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         UserService userService = UserServiceFactory.getUserService();
-        if (userService.isUserLoggedIn()) 
+        response.setContentType("application/json;");
+        Gson gson = new Gson();
+        if(userService.isUserLoggedIn())
         {
-            String userEmail = userService.getCurrentUser().getEmail();
-            String urlToRedirectToAfterUserLogsOut = "/";
-            String logoutUrl = userService.createLogoutURL(urlToRedirectToAfterUserLogsOut);
-
-            response.getWriter().println("<p>Hello " + userEmail + "!</p>");
-            response.getWriter().println("<p>Logout <a href=\"" + logoutUrl + "\">here</a>.</p>");
-        } 
-        else 
-        {
-            String urlToRedirectToAfterUserLogsIn = "/";
-            String loginUrl = userService.createLoginURL(urlToRedirectToAfterUserLogsIn);
-
-            response.getWriter().println("<p>Hello stranger.</p>");
-            response.getWriter().println("<p>Login <a href=\"" + loginUrl + "\">here</a>.</p>");
+            response.getWriter().println(gson.toJson("1"));
+        }
+        else
+        {    
+            response.getWriter().println(gson.toJson("0"));
         }
   }
 }

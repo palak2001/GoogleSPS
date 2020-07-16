@@ -1,5 +1,13 @@
 function displayComments()
 {
+    fetch('/loginStats').then(response => response.json()).then(loginStats =>
+    {
+        console.log(loginStats);
+        if(loginStats[0]!=="0")
+        {
+            console.log("I am true");
+        }
+    });
     fetch('/data').then(response => response.json()).then(comments =>{
         const commentsListElements = document.getElementById('all-comments');
         commentsListElements.innerHTML = '';
