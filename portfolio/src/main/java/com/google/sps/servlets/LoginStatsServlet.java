@@ -32,7 +32,11 @@ public class LoginStatsServlet extends HttpServlet {
         }
         else
         {    
-            response.getWriter().println(gson.toJson("0"));
+            String urlToRedirectToAfterUserLogsIn = "/";
+            String loginUrl = userService.createLoginURL(urlToRedirectToAfterUserLogsIn);
+
+            response.getWriter().println(gson.toJson("<p>Hello stranger.</p>"));
+            response.getWriter().println(gson.toJson("<p>Login <a href=\"" + loginUrl + "\">here</a>.</p>"));
         }
   }
 }

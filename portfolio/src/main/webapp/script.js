@@ -2,8 +2,7 @@ function displayComments()
 {
     fetch('/loginStats').then(response => response.json()).then(loginStats =>
     {
-        console.log(loginStats);
-        if(loginStats[0]!=="0")
+        if(loginStats[0]=="1")
         {
             fetch('/data').then(response => response.json()).then(comments =>{
                 const commentsListElements = document.getElementById('all-comments');
@@ -16,7 +15,12 @@ function displayComments()
         }
         else
         {
-            console.log("Please login");
+            const loginHere = document.getElementById('login-here');
+            loginHere.innerHTML = '';
+            for(var key in loginStats)
+            {
+                loginHere.appendChild(createListElement(comments[key]));
+            }
         }
     });
 }
