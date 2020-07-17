@@ -2,7 +2,7 @@ function displayComments()
 {
     fetch('/loginStats').then(response => response.json()).then(loginStats =>
     {
-        if(loginStats[0]=="1")
+        if(loginStats.LoggedIn=="1")
         {
             fetch('/data').then(response => response.json()).then(comments =>{
                 const commentsListElements = document.getElementById('all-comments');
@@ -12,11 +12,14 @@ function displayComments()
                     commentsListElements.appendChild(createListElement(comments[key]));
                 }
             });
+            console.log(loginStats.URL);
+            document.getElementById('login-logout-here').innerHTML="Logout";
+            document.getElementById('login-logout-here').setAttribute("href",loginStats.URL);
         }
         else
         {
-            document.getElementById('login-here').innerHTML="Login";
-            document.getElementById('login-here').setAttribute("href",loginStats);
+            document.getElementById('login-logout-here').innerHTML="Login";
+            document.getElementById('login-logout-here').setAttribute("href",loginStats.URL);
         }
     });
 }

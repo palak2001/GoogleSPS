@@ -1,5 +1,6 @@
 package com.google.sps.servlets;
 
+import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.appengine.api.datastore.DatastoreService;
@@ -11,6 +12,7 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 import java.util.logging.Logger;
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.ArrayList;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,13 +30,22 @@ public class LoginStatsServlet extends HttpServlet {
         Gson gson = new Gson();
         if(userService.isUserLoggedIn())
         {
-            response.getWriter().println(gson.toJson("1"));
+            HashMap<String,String> obj = new HashMap<String,String>();
+            String userEmail = userService.getCurrentUser().getEmail();
+            String urlToRedirectToAfterUserLogsOut = "/";
+            String logoutUrl = userService.createLogoutURL(urlToRedirectToAfterUserLogsOut);
+            obj.put("LoggedIn","1");
+            obj.put("URL",logoutUrl);
+            response.getWriter().println(gson.toJson(obj));
         }
         else
-        {    
+        {  
+            HashMap<String,String> obj = new HashMap<String,String>();
             String urlToRedirectToAfterUserLogsIn = "/";
             String loginUrl = userService.createLoginURL(urlToRedirectToAfterUserLogsIn);
-            response.getWriter().println(gson.toJson(loginUrl));
+            obj.put("LoggedIn","0");
+            obj.put("URL",loginUrl);
+            response.getWriter().println(gson.toJson(obj));
         }
   }
 }
