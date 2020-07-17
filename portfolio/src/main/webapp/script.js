@@ -15,12 +15,8 @@ function displayComments()
         }
         else
         {
-            const loginHere = document.getElementById('login-here');
-            loginHere.innerHTML = '';
-            for(var key in loginStats)
-            {
-                loginHere.appendChild(createListElement(comments[key]));
-            }
+            document.getElementById('login-here').innerHTML="Login";
+            document.getElementById('login-here').setAttribute("href",loginStats);
         }
     });
 }
