@@ -34,12 +34,14 @@ public class DataServlet extends HttpServlet{
         { 
             HashMap<String,String> obj = new HashMap<String,String>();
             obj.put("comment",(String) entity.getProperty("comment"));    
-            obj.put("userEmail",(String) entity.getProperty("userEmail"));
+            obj.put("email",(String) entity.getProperty("userEmail"));
+            obj.put("image",(String) entity.getProperty("image"));
             comments.add(convertHashMapToJson(obj));
         }
         String jsonComments = convertStringToJson(comments);        
         try 
         {
+            System.out.println(jsonComments);
             response.setContentType("application/json;");
             response.getWriter().println(jsonComments);
         }
@@ -55,10 +57,13 @@ public class DataServlet extends HttpServlet{
         Entity commentEntity = new Entity("Comment");
         String email = userService.getCurrentUser().getEmail();        
         String comment= getParameter(request,"add-comment","");
+        BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+        String uploadUrl = blobstoreService.createUploadUrl("/my-form-handler");
         long timestamp = System.currentTimeMillis();
         commentEntity.setProperty("comment", comment);
         commentEntity.setProperty("timestamp", timestamp);
         commentEntity.setProperty("userEmail", email);
+        commentEntity.setProperty("image", uploadUrl);
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         datastore.put(commentEntity);
         try

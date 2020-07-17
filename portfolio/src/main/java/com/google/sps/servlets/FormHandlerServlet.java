@@ -38,7 +38,7 @@ public class FormHandlerServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException 
   {
-    String imageUrl = getUploadedFileUrl(request, "image");
+    String imageUrl = getUploadedFileUrl(request, "comment-image");
     response.getWriter().println(imageUrl);
   }
 
@@ -46,7 +46,7 @@ public class FormHandlerServlet extends HttpServlet {
   {
     BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
     Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
-    List<BlobKey> blobKeys = blobs.get("image");
+    List<BlobKey> blobKeys = blobs.get("comment-image");
 
     if (blobKeys == null || blobKeys.isEmpty()) 
     {

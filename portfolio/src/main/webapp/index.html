@@ -13,13 +13,15 @@
             <ul class="nav_elements"><a href="#experience"><b>EXPERIENCE</b></a></ul>
             <ul class="nav_elements"><a href="resume.pdf"><b>RESUME</b></ul>
             <ul class="nav_elements"><a href="#contact"><b>CONTACT</b></a></ul>
-        </nav> 
-        <form action="/data " method="POST">
+        </nav>
+        <form id="comment-form" class="hidden" method="POST" enctype="multipart/form-data">
             <textarea name="add-comment"></textarea>
             <input type="file" name="comment-image">Add image</input>
+            <img id="images-here" src="#"></img>
+            <div id="comments-here"></div>
+            <div id="email-here"></div>
             <button onclick="displayComments()">Comment</button>
-            <div id="all-comments"></div>
-            <a  href="#" id="login-logout-here"></a> 
+            <a  href="#" id="login-logout-here" style="color:white;"></a> 
         </form>
         <div class="cards"><span class="quote">W e&nbsp&nbsp&nbsp&nbspn e e d&nbsp&nbsp&nbsp&nbspm o r e&nbsp&nbsp&nbsp&nbspd o e r s ,&nbsp&nbsp&nbsp&nbspl e s s&nbsp&nbsp&nbsp&nbspt a l k e r s</span>
         </div> 

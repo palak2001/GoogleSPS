@@ -4,17 +4,31 @@ function displayComments()
     {
         if(loginStats.LoggedIn=="1")
         {
-            fetch('/data').then(response => response.json()).then(comments =>{
-                const commentsListElements = document.getElementById('all-comments');
+            fetch('/data')
+            .then(response => response.json())
+            .then(comments =>
+            {
+                const commentsListElements = document.getElementById('comments-here');
+                //const imagesListElements = document.getElementById('images-here');
+                const emailListElements = document.getElementById('email-here');
                 commentsListElements.innerHTML = '';
+                emailListElements.innerHTML = '';
+                console.log(comments);
                 for(var key in comments)
                 {
-                    commentsListElements.appendChild(createListElement(comments[key]));
-                }
+                    commentsListElements.appendChild(createListElement(comments[key].comment));
+                    emailListElements.appendChild(createListElement(comments[key].email));
+                    if(comments[key].image!==null){
+                    imagesListElements.getElementById('images-here').setAttribute("src",comments[key].image);                    
+                }}
+                // const commentForm = document.getElementById('comment-form');
+                // commentForm.action = imageUploadUrl;
+                // commentForm.classList.remove('hidden');
             });
             console.log(loginStats.URL);
             document.getElementById('login-logout-here').innerHTML="Logout";
             document.getElementById('login-logout-here').setAttribute("href",loginStats.URL);
+            
         }
         else
         {
