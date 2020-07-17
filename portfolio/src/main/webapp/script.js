@@ -13,11 +13,12 @@ function displayComments()
                 const emailListElements = document.getElementById('email-here');
                 commentsListElements.innerHTML = '';
                 emailListElements.innerHTML = '';
-                console.log(comments);
                 for(var key in comments)
                 {
-                    commentsListElements.appendChild(createListElement(comments[key].comment));
-                    emailListElements.appendChild(createListElement(comments[key].email));
+                    // console.log(comments[key].comment);
+                    // console.log(comments[key].email);
+                     commentsListElements.appendChild(createListElement(comments[key].comment));
+                     emailListElements.appendChild(createListElement(comments[key].email));
                     if(comments[key].image!==null){
                     imagesListElements.getElementById('images-here').setAttribute("src",comments[key].image);                    
                 }}
