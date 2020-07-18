@@ -1,5 +1,6 @@
 function displayComments()
 {
+    console.log(document.getElementsByName('add-comment'));
     fetch('/loginStats').then(response => response.json()).then(loginStats =>
     {
         if(loginStats.LoggedIn=="1")
@@ -8,23 +9,25 @@ function displayComments()
             .then(response => response.json())
             .then(comments =>
             {
-                const commentsListElements = document.getElementById('comments-here');
-                //const imagesListElements = document.getElementById('images-here');
-                const emailListElements = document.getElementById('email-here');
-                commentsListElements.innerHTML = '';
-                emailListElements.innerHTML = '';
-                for(var key in comments)
+                const mainDiv = document.getElementById('comments-div');
+
+                for(var i=0;i<comments.length;i=i+1)
                 {
-                    // console.log(comments[key].comment);
-                    // console.log(comments[key].email);
-                     commentsListElements.appendChild(createListElement(comments[key].comment));
-                     emailListElements.appendChild(createListElement(comments[key].email));
-                    if(comments[key].image!==null){
-                    imagesListElements.getElementById('images-here').setAttribute("src",comments[key].image);                    
-                }}
-                // const commentForm = document.getElementById('comment-form');
-                // commentForm.action = imageUploadUrl;
-                // commentForm.classList.remove('hidden');
+                    const commentDiv = document.createElement('li');
+                    console.log(comments[i].image);
+                    const comment = document.createTextNode(comments[i].comment);
+                    commentDiv.append(comment);
+                    commentDiv.append(" ");
+                    const email = document.createTextNode(comments[i].email);
+                    commentDiv.append(" ");
+                    commentDiv.append(email);
+                    if(comments[i].image!==null)
+                    {
+                        const image = document.createElement('img').setAttribute("src",comments[i].image);
+                        commentDiv.append(image);
+                    }
+                    mainDiv.append(commentDiv);
+                }
             });
             console.log(loginStats.URL);
             document.getElementById('login-logout-here').innerHTML="Logout";
@@ -38,29 +41,3 @@ function displayComments()
         }
     });
 }
-
-function createListElement(text) {
-    const liElement = document.createElement('li');
-    liElement.innerText = text;
-    return liElement;
-}
-
-
-
-// const line= document.querySelector('.line');
-// let start = Date.now();
-// let timer = setInterval(function() 
-// {
-//     let timePassed = Date.now() - start;
-//     if (timePassed >= 2000)
-//     {
-//         clearInterval(timer);
-//         return;
-//     }
-//     drawline(timePassed);
-// }, 20);
-
-// function drawline(timePassed) 
-// {
-//     line.style.left = timePassed / 5 + 'px';
-// }

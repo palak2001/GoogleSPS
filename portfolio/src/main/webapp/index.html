@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
-  <body class="main" onload="displayComments()">
+  <body class="main"   onload="displayComments()">
     <header id="about"> 
         <nav class="navbar">
             <ul class="nav_elements"><a href="#about"><b>ABOUT</b></ul>
@@ -14,12 +14,10 @@
             <ul class="nav_elements"><a href="resume.pdf"><b>RESUME</b></ul>
             <ul class="nav_elements"><a href="#contact"><b>CONTACT</b></a></ul>
         </nav>
-        <form id="comment-form" class="hidden" method="POST" enctype="multipart/form-data">
+        <form action="/data" method="POST">
             <textarea name="add-comment"></textarea>
             <input type="file" name="comment-image">Add image</input>
-            <img id="images-here" src="#"></img>
-            <div id="comments-here"></div>
-            <div id="email-here"></div>
+            <div id="comments-div"></div>
             <button onclick="displayComments()">Comment</button>
             <a  href="#" id="login-logout-here" style="color:white;"></a> 
         </form>

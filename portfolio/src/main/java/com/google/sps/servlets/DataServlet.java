@@ -1,5 +1,6 @@
 package com.google.sps.servlets;
 
+import com.google.sps.Comment;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import com.google.appengine.api.users.User;
@@ -16,6 +17,7 @@ import java.util.logging.Logger;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,27 +30,19 @@ public class DataServlet extends HttpServlet{
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Gson gsonHashMap = new Gson();
-        Gson gsonString = new Gson();
-        ArrayList<String> comments = new ArrayList<String>();
+        Gson gson = new Gson();
+        List<Comment> comments = new ArrayList<>();
         Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         PreparedQuery results = datastore.prepare(query);
         for (Entity entity : results.asIterable())
-        { 
-            HashMap<String,Object> obj = new HashMap<String,Object>();
-            obj.put("comment",entity.getProperty("comment"));    
-            obj.put("email",entity.getProperty("userEmail"));
-            obj.put("image",entity.getProperty("image"));
-            String str=gsonHashMap.toJson(obj);
-            comments.add(str);
-            
+        {
+            Comment comment = new Comment((String)entity.getProperty("comment"),(String)entity.getProperty("userEmail"),(String)entity.getProperty("image"));
+            comments.add(comment);
         }
-        String jsonComments = gsonString.toJson(comments);
-        System.out.println(jsonComments);    
+        String jsonComments = gson.toJson(comments);
         try 
         {
-            System.out.println(jsonComments);
             response.setContentType("application/json;");
             response.getWriter().println(jsonComments);
         }
@@ -59,17 +53,15 @@ public class DataServlet extends HttpServlet{
         }
     }
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException
-  {
+  {     System.out.println("Post is called");
         Gson gson = new Gson();
         UserService userService = UserServiceFactory.getUserService();
         Entity commentEntity = new Entity("Comment");
         String email = userService.getCurrentUser().getEmail();        
         String comment= getParameter(request,"add-comment","");
-        comment= comment.replaceAll("\\\\", "");
-        comment= comment.replaceAll("\r\n|\n|\r", "");
-        comment= comment.replaceAll("(\\\\r\\\\n|\\\\n)", "");
         BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
         String uploadUrl = blobstoreService.createUploadUrl("/my-form-handler");
+        System.out.println(comment);
         long timestamp = System.currentTimeMillis();
         commentEntity.setProperty("comment", comment);
         commentEntity.setProperty("timestamp", timestamp);
