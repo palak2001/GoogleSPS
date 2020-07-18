@@ -13,19 +13,13 @@ function displayComments()
 
                 for(var i=0;i<comments.length;i=i+1)
                 {
-                    const commentDiv = document.createElement('li');
-                    console.log(comments[i].image);
+                    const commentDiv = document.createElement('ul');
                     const comment = document.createTextNode(comments[i].comment);
                     commentDiv.append(comment);
-                    commentDiv.append(" ");
-                    const email = document.createTextNode(comments[i].email);
-                    commentDiv.append(" ");
+                    commentDiv.append("- ");
+                    const email = document.createElement('strong');
+                    email.append(comments[i].email);
                     commentDiv.append(email);
-                    if(comments[i].image!==null)
-                    {
-                        const image = document.createElement('img').setAttribute("src",comments[i].image);
-                        commentDiv.append(image);
-                    }
                     mainDiv.append(commentDiv);
                 }
             });
