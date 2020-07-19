@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
-  <body class="main" onload="displayComments()">
+  <body class="main"   onload="displayComments()">
     <header id="about"> 
         <nav class="navbar">
             <ul class="nav_elements"><a href="#about"><b>ABOUT</b></ul>
@@ -13,13 +13,7 @@
             <ul class="nav_elements"><a href="#experience"><b>EXPERIENCE</b></a></ul>
             <ul class="nav_elements"><a href="resume.pdf"><b>RESUME</b></ul>
             <ul class="nav_elements"><a href="#contact"><b>CONTACT</b></a></ul>
-        </nav> 
-        <form action="/data " method="POST">
-            <textarea name="add-comment"></textarea>
-            <button onclick="displayComments()">Comment</button>
-            <div id="all-comments"></div>
-            <a  href="#" id="login-logout-here"></a> 
-        </form>
+        </nav>
         <div class="cards"><span class="quote">W e&nbsp&nbsp&nbsp&nbspn e e d&nbsp&nbsp&nbsp&nbspm o r e&nbsp&nbsp&nbsp&nbspd o e r s ,&nbsp&nbsp&nbsp&nbspl e s s&nbsp&nbsp&nbsp&nbspt a l k e r s</span>
         </div> 
         <div class="cards">
@@ -87,6 +81,14 @@
             <h1>CONTACT ME</h1>
             <h3>Whether you wanna discuss about any idea or wanna talk about projects, feel free to contact me.<br> I'm best contacted by Email but you can use any other service you like.</h3>
         <br>
+        <h1>Wanna tell about our experience</h1>
+        <form action="/data" method="POST" style="align-items:center;">
+            <button onclick="displayComments()" style="align-self:center;">Comment</button>
+            <a  href="#" id="login-logout-here" style="color:white;"></a> 
+            <br><textarea name="add-comment"></textarea>
+            <div id="comments-div"></div>
+        </form>
+        </br>
             <a href="_https://www.linkedin.com/in/palakmittal2908/" target="_blank" class="dot fa fa-linkedin"></a>
             <a href="mailto:palak.mittal.2908@gmail.com" target="_blank" class="fa fa-google"></a>
             <a href="https://github.com/palak2001" target="_blank" class="fa fa-github"></a>

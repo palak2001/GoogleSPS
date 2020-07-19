@@ -1,20 +1,32 @@
 function displayComments()
 {
+    console.log(document.getElementsByName('add-comment'));
     fetch('/loginStats').then(response => response.json()).then(loginStats =>
     {
         if(loginStats.LoggedIn=="1")
         {
-            fetch('/data').then(response => response.json()).then(comments =>{
-                const commentsListElements = document.getElementById('all-comments');
-                commentsListElements.innerHTML = '';
-                for(var key in comments)
+            fetch('/data')
+            .then(response => response.json())
+            .then(comments =>
+            {
+                const mainDiv = document.getElementById('comments-div');
+
+                for(var i=0;i<comments.length;i=i+1)
                 {
-                    commentsListElements.appendChild(createListElement(comments[key]));
+                    const commentDiv = document.createElement('ul');
+                    const comment = document.createTextNode(comments[i].comment);
+                    commentDiv.append(comment);
+                    commentDiv.append("- ");
+                    const email = document.createElement('strong');
+                    email.append(comments[i].email);
+                    commentDiv.append(email);
+                    mainDiv.append(commentDiv);
                 }
             });
             console.log(loginStats.URL);
             document.getElementById('login-logout-here').innerHTML="Logout";
             document.getElementById('login-logout-here').setAttribute("href",loginStats.URL);
+            
         }
         else
         {
@@ -23,29 +35,3 @@ function displayComments()
         }
     });
 }
-
-function createListElement(text) {
-    const liElement = document.createElement('li');
-    liElement.innerText = text;
-    return liElement;
-}
-
-
-
-// const line= document.querySelector('.line');
-// let start = Date.now();
-// let timer = setInterval(function() 
-// {
-//     let timePassed = Date.now() - start;
-//     if (timePassed >= 2000)
-//     {
-//         clearInterval(timer);
-//         return;
-//     }
-//     drawline(timePassed);
-// }, 20);
-
-// function drawline(timePassed) 
-// {
-//     line.style.left = timePassed / 5 + 'px';
-// }
